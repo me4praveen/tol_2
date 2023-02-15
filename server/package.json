@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./dist/index.js",
-    "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
+    "dev": "rm -rf ./dist && nodemon -L -e ts --exec \"npm run build && npm start\"",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

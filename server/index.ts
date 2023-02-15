@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     res.send('Hi There!!!!')
   });
 
-  app.get('/api/test', (req, res) => {
+  app.get('/v1/test', (req, res) => {
     res.json({test: 123}).status(200);
   });
 
