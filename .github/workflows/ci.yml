@@ -26,7 +26,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: tol_2_client:latest
+          tags: praveenpratap999/tol:tagname
         
 #   test:
 #     runs-on: ubuntu-latest
