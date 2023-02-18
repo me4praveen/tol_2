@@ -1,16 +1,15 @@
 import dotenv from "dotenv";
 dotenv.config({path: "./.env"});
 
-
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 
 // import { connectToDB } from "./pgConnection";
-import { sequelize } from "./src/models";
+import { sequelize } from "./src/db/models";
+import { schema } from "./src/graphql";
 
 
 console.log(process.env.POSTGRES_PASSWORD)
@@ -23,24 +22,7 @@ app.use(cors<cors.CorsRequest>());
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 
-// The GraphQL schema
-const typeDefs = `#graphql
-  type Query {
-    hello: String
-  }
-`;
-
-// A map of functions which return data for the schema.
-const resolvers = {
-  Query: {
-    hello: () => 'world',
-  },
-};
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers
-});
+const server = new ApolloServer({schema});
 
 async function startServer(){
   await server.start();
