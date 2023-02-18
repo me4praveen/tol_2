@@ -2,8 +2,8 @@ FROM node:alpine
 
 WORKDIR /app
 COPY ["package.json", "package-lock.json", "tsconfig.json", ".env", "./"]
-COPY ./ ./
 RUN npm i
+COPY ./ ./
 
 ARG DEFAULT_PORT 3000
 ENV PORT $DEFAULT_PORT
