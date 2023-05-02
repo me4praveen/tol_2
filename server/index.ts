@@ -7,9 +7,12 @@ import bodyParser from "body-parser";
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 
-// import { connectToDB } from "./pgConnection";
 import { sequelize } from "./src/db/models";
 import { schema } from "./src/graphql";
+import initialSetup from "./src/db/models/initialSetup";
+import fileuploader from "./src/routes/fileuploader";
+// import User from "./src/db/models/user";
+// import { connectToDB } from "./src/db/pgConnection";
 
 
 console.log(process.env.POSTGRES_PASSWORD)
@@ -30,6 +33,7 @@ async function startServer(){
 }
 startServer();
 
+app.use('/upload', fileuploader);
 app.get('/', (req, res) => {
   res.send('Hi There!!!!')
 });
@@ -38,7 +42,6 @@ app.get('/v1/test', (req, res) => {
   res.json({ test: 123 }).status(200);
 });
 
-app.post('/graphql', )
 app.listen(PORT, async () => {
   console.log(`App is lestening on ${PORT}`);
   // connectToDB();
@@ -46,6 +49,7 @@ app.listen(PORT, async () => {
     await sequelize.authenticate();
     sequelize.sync({ force: true })
       .then(() => {
+        initialSetup();
         console.log("Synced db.");
       })
       .catch((err) => {
