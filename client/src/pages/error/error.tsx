@@ -1,8 +1,25 @@
 import React from "react";
-import { useRouteError } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export default function ErrorPage() {
-  const error : {statusText: string, message: string} = useRouteError() as any;
+type Props = {
+  statusText: string;
+  message: string;
+}
+
+export const NoMatch = () => {
+  let location = useLocation();
+
+  return (
+    <div>
+      <h3>
+        No match for <code>{location.pathname}</code>
+      </h3>
+    </div>
+  );
+}
+
+export default function ErrorPage(props: Props) {
+  const error : {statusText: string, message: string} = props;
   console.error(error);
 
   return (

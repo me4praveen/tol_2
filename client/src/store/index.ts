@@ -6,7 +6,8 @@ const composeEnhancers = (typeof window !== 'undefined' && (window as any).__RED
 export const store = configureStore({
   reducer: {
     user: userReducer
-  }
+  },
+  devTools: true
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

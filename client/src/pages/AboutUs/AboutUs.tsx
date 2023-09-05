@@ -10,11 +10,12 @@ function AboutUs() {
   useEffect(() => {
     console.log("here")
     dispatch(fetchUserDetails({username:"shashi", password: "tol1992"}));
-  }, [])
+  }, [dispatch])
   
   return (
     <div>
-       {loggedInUser && loggedInUser.username}
+      About
+       {loggedInUser && loggedInUser.user.email}
     </div>
   )
 }

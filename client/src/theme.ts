@@ -1,9 +1,19 @@
 import { red } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 // A custom theme for this app
 const theme = createTheme({
+    breakpoints: {
+        values: {
+          xs: 0,
+          sm: 600,
+          md: 900,
+          lg: 1200,
+          xl: 1536,
+        },
+      },
   palette: {
+    mode: "light",
     primary: {
       main: '#556cd6',
     },
@@ -14,6 +24,25 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  components: {
+    MuiTypography: {
+      styleOverrides:{
+        h6: {
+          fontSize: '16px'
+        }
+      }
+    },
+    MuiAppBar : {
+      styleOverrides: {
+        root: {
+          background: "#091963"
+        }
+      }
+    }
+  },
+  typography: {
+    
+  }
 });
 
-export default theme;
+export default responsiveFontSizes(theme);

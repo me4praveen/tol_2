@@ -17,10 +17,7 @@ interface FetchUserDetailsReqBody {
 
 export const fetchUserDetails = createAsyncThunk(
     'users/fetchUserDetails',
-    async (req: FetchUserDetailsReqBody, thunkAPI) => {
-        const data = await userAPI.fetchUserDetails(req.username, req.password);
-        return data
-    }
+    async (req: FetchUserDetailsReqBody, thunkAPI) => await userAPI.fetchUserDetails(req.username, req.password)
 )
 
 const userSlice = createSlice({
